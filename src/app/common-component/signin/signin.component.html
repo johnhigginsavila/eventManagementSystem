@@ -1,0 +1,60 @@
+<div>
+  <form class='form-horizontal form-signin' id='sign-up-form' [formGroup]='sessionNewForm'>
+    <fieldset class='container-fluid col-lg-4 col-lg-offset-4'>
+      <legend>Sign In</legend>
+        <div *ngIf="error" class="alert alert-danger">
+          <p>{{error}}</p>
+        </div> 
+        <div *ngIf="success" class="alert alert-success">
+          <p>{{success}}</p>
+        </div>
+        <!-- LoginName -->
+      <div class='form-group'>
+        <input type="text"
+          formControlName='loginName'
+          class='form-control'
+          placeholder='Email or ID Number'
+          required
+        />
+        <div
+          *ngIf="sessionNewForm.controls['loginName'].hasError('required')
+            && (sessionNewForm.controls['loginName'].dirty || sessionNewForm.controls['loginName'].touched)"
+          class="alert alert-danger"
+        >Please Enter ID Number or Email
+        </div>
+      </div><!-- LoginName -->
+        <!-- Password -->
+      <div class='form-group'>
+        <input type='password'
+          formControlName='password'
+          class='form-control'
+          placeholder="Password"
+          required
+        />
+        <div
+          *ngIf="sessionNewForm.controls['password'].hasError('required')
+            && (sessionNewForm.controls['password'].dirty || sessionNewForm.controls['password'].touched)"
+          class="alert alert-danger"
+        >Please Enter Password
+        </div>
+      </div><!-- Password -->
+      <div class='form-group'>
+        <input *ngIf="sessionNewForm.valid"
+          type="submit"
+          class="btn btn-info"
+          (click)="onSubmit()"
+        />
+        <input *ngIf="!sessionNewForm.valid"
+          type="submit"
+          class="btn btn-info"
+          disabled
+        />
+        <input type='button'
+          class='btn btn-danger'
+          value='Cancel'
+          (click)='onCancel()'
+        />
+      </div>
+    </fieldset>
+  </form>
+</div>

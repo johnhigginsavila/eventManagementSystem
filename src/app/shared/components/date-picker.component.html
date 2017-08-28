@@ -1,0 +1,23 @@
+<!--    <input ngbDatepicker #d1="ngbDatepicker">
+      <div class="input-group-addon"(click)="d1.toggle()">
+      <i class="fa fa-calendar"></i>
+    </div>-->
+
+    <form class="form-inline">
+      <div class="form-group">
+        <div class="input-group">
+          <input
+            readonly
+            class="form-control"
+            [placeholder]="placeholder"
+            name="date"
+            [(ngModel)]="dateStruct"
+            (ngModelChange)="updateDate()"
+            ngbDatepicker
+            #datePicker="ngbDatepicker">
+            <div class="input-group-addon" (click)="datePicker.toggle()">
+            <i class="fa fa-calendar"></i>
+            </div>
+        </div>
+      </div>
+    </form>

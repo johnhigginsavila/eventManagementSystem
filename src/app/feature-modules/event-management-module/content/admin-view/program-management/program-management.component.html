@@ -1,0 +1,121 @@
+<div class="container"><br><br>
+  <h3>Event Details</h3><br>
+    <form>
+        <div class="form-group row">
+            <label for="eventName" class="col-2 col-form-label">Event Name:</label>
+            <div class="col-6">
+              <input class="form-control" type="text" placeholder="Event Name" id="eventName">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="dateStart" class="col-2 col-form-label">Date Start:</label>
+            <div class="col-6">
+                <app-date-picker>
+                </app-date-picker>
+            </div>
+          </div>
+            <div class="form-group row">
+            <label for="dateStart" class="col-2 col-form-label">Date End:</label>
+                <div class="col-6">
+                    <app-date-picker>
+                    </app-date-picker>
+                </div>
+            </div>
+          <div class="form-group row">
+            <label for="location" class="col-2 col-form-label">Location:</label>
+            <div class="col-6">
+              <input class="form-control" type="text" placeholder="Location" id="location">
+            </div>
+          </div>
+    </form>
+      <br><br>
+<h3>Program List</h3>
+<table class="table">
+  <thead>
+    <tr>
+    <th>#</th>
+    <th>Program Name</th>
+    <th>Program Start</th>
+    <th>Program End</th>
+    <th>Category</th>
+    <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td scope="row">1</td>
+      <td>Program 1</td>
+      <td>date start</td>
+      <td>date end</td>
+      <td>Ceromony or Contest</td>
+      <td><button role="button" class="btn btn-danger btn-block">Remove</button></td>
+    </tr>
+  </tbody>
+</table>
+<!-- modal trigger -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addProgramModal">
+  Add Program
+</button>
+<!-- modal -->
+<div class="modal fade" id="addProgramModal" tabindex="-1" role="dialog" aria-labelledby="addProgramModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addProgramModalHeader">Program Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container col-12">
+          <form>
+            <div class="form-group row">
+              <label for="programName" class="col-sm-3 col-form-label">Program Name:</label>
+              <div class="col-sm-9">
+                  <input type="name" class="form-control" id="programName" placeholder="Program Name"> 
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="programDateStart" class="col-sm-3 col-form-label">Date Start: </label>
+              <div class="col-sm-6">
+                  <app-date-picker></app-date-picker>
+              </div> 
+            </div>
+            <div class="form-group row">
+              <label for="programDateEnd" class="col-sm-3 col-form-label">Date End: </label>
+              <div class="col-sm-6">
+                  <app-date-picker></app-date-picker>
+                </div> 
+            </div>
+            <div class="form-group row">
+              <label for="programLocation" class="col-sm-3 col-form-label">Location: </label>
+              <div class="col-sm-6">
+                  <input type="name" class="form-control" id="programLocation" placeholder="Location">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label" for="inlineFormCustomeSelect">Category: </label>
+              <div class="col-sm-6">
+                <select class="custom-select form-control" id="inlineFormCustomSelect">
+                  <option value="1">Ceremony</option>
+                  <option value="2">Contest</option>
+               </select>
+              </div>
+            </div>
+          </form>
+          
+
+
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>

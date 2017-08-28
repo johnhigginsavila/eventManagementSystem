@@ -1,0 +1,8 @@
+<div class="container">
+    <div *ngIf="(userSession | async) && (userSession|async ).admin">
+      <app-admin-view></app-admin-view>
+    </div>
+    <div *ngIf="(userSession | async) && !(userSession|async ).admin">
+      <app-ordinary-view></app-ordinary-view>
+    </div>
+</div>

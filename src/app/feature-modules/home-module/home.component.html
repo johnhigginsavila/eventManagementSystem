@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>Home</h1>
+  <div *ngIf="!(userSession | async) && !(signUpAttempt | async)">
+    <app-signin></app-signin>
+    <button class="btn btn-block btn-success" (click)="onSignUp()">Sign-up</button>
+  </div>
+  <div *ngIf="!(userSession | async) && (signUpAttempt | async)">
+    <app-signup></app-signup>
+  </div>
+</div>

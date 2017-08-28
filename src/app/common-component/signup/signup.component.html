@@ -1,0 +1,132 @@
+<div>
+  <form class='form-horizontal form-signin' id='sign-up-form' [formGroup]='userNewForm'>
+    <fieldset class='container-fluid col-lg-4 col-lg-offset-4'>
+      <legend>Create an account</legend>
+         <div *ngIf="errors" class="alert alert-danger">
+          <p>{{errors}}</p>
+        </div> 
+        <div *ngIf="success" class="alert alert-success">
+          <p>{{success}}</p>
+        </div>
+        <!-- Firsname -->
+      <div class='form-group'>
+        <input type='text'
+          formControlName='firstname'
+          class='form-control'
+          placeholder='Firstname'
+          required
+        />
+        <div
+          *ngIf="userNewForm.controls['firstname'].hasError('required') && (userNewForm.controls['firstname'].dirty || userNewForm.controls['firstname'].touched)"
+          class="alert alert-danger"
+        >Please enter your Firstname
+        </div>
+      </div><!-- Firstname -->
+        <!-- Lastname -->
+      <div class='form-group'>
+        <input type='text'
+          formControlName='lastname'
+          class='form-control'
+          placeholder='Lastname'
+          required
+        />
+        <div
+          *ngIf="userNewForm.controls['lastname'].hasError('required')
+            && (userNewForm.controls['lastname'].dirty || userNewForm.controls['lastname'].touched)"
+          class="alert alert-danger"
+        >Please enter your Lastname
+        </div>
+      </div><!-- Lastname -->
+        <!-- Email -->
+      <div class='form-group'>
+        <input type='text'
+          formControlName='email'
+          class='form-control'
+          placeholder='Email'
+          required
+          email
+        />
+        <div
+          *ngIf="userNewForm.controls['email'].hasError('required')
+            && (userNewForm.controls['email'].dirty || userNewForm.controls['email'].touched)"
+          class="alert alert-danger"
+        >Please Enter Email
+        </div>
+        <div
+          *ngIf="userNewForm.controls['email'].hasError('email') 
+            && userNewForm.controls['email'].dirty"
+          class="alert alert-danger"
+        >Invalid Email
+        </div>
+      </div><!-- Email -->
+        <!-- ID Number -->
+      <div class='form-group'>
+        <input type="text"
+          formControlName='idNumber'
+          class='form-control'
+          placeholder='ID number'
+          required
+        />
+        <div
+          *ngIf="userNewForm.controls['idNumber'].hasError('required')
+            && (userNewForm.controls['idNumber'].dirty || userNewForm.controls['idNumber'].touched)"
+          class="alert alert-danger"
+        >Please Enter ID Number
+        </div>
+      </div><!-- ID Number -->
+        <!-- Password -->
+      <div class='form-group'>
+        <input type='password'
+          formControlName='password'
+          class='form-control'
+          placeholder="Password"
+          required
+        />
+        <div
+          *ngIf="userNewForm.controls['password'].hasError('required')
+            && (userNewForm.controls['password'].dirty || userNewForm.controls['password'].touched)"
+          class="alert alert-danger"
+        >Please Enter Password
+        </div>
+      </div><!-- Password -->
+      <!-- Confirmation -->
+      <div class='form-group'>
+        <input type='password'
+          formControlName='confirmation'
+          class='form-control'
+          placeholder="Confirmed Password"
+          required
+        />
+        <div
+          *ngIf="userNewForm.controls['confirmation'].hasError('required')
+            && (userNewForm.controls['confirmation'].dirty || userNewForm.controls['confirmation'].touched)"
+          class="alert alert-danger"
+        >Please Enter Confirmed Password
+        </div>
+        <div
+          *ngIf="(userNewForm.controls['password'].value !== userNewForm.controls['confirmation'].value)
+            && (userNewForm.controls['confirmation'].dirty || userNewForm.controls['confirmation'].touched)"
+            class="alert alert-danger"
+        >Password do not match
+        </div>
+      </div><!-- Confirmation -->
+      <div class='form-group'>
+        <input *ngIf="userNewForm.valid && (userNewForm.controls['password'].value === userNewForm.controls['confirmation'].value)"
+          type="submit"
+          class="btn btn-info"
+          (click)="onSubmit()"
+        />
+        <input *ngIf="!userNewForm.valid || (userNewForm.controls['password'].value !== userNewForm.controls['confirmation'].value && !userNewForm.controls.valid)"
+          type="submit"
+          class="btn btn-info"
+          disabled
+        />
+        <input type='button'
+          class='btn btn-danger'
+          value='Cancel'
+          (click)='onCancel()'
+        />
+      </div>
+    </fieldset>
+  </form>
+</div>
