@@ -21,9 +21,11 @@ module.exports = {
       required:true,
       max:1
     },
-    schedule:{
-      type:'datetime',
-      required:true
+    startDate:{
+      type:'datetime'
+    },
+    endDate:{
+      type:'datetime'
     },
     subCriteria:{
       collection:'subCriteria',

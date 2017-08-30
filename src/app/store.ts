@@ -1,6 +1,17 @@
 import { tassign } from 'tassign';
-import { SIGNED_UP, SIGNED_IN, CHECK_USER_SESSION, FETCH_USER_LIST, SIGN_UP_ATTEMPT, SIGNED_OUT, CHANGED_PAGE } from './actions';
+
+import { 
+    SIGNED_UP,
+    SIGNED_IN, CHECK_USER_SESSION,
+    FETCH_USER_LIST,
+    SIGN_UP_ATTEMPT,
+    SIGNED_OUT,
+    CHANGED_PAGE,
+    FETCH_EVENTS 
+} from './actions';
+
 import { IUserData } from './interfaces/user/user-data.interface';
+import { IEvent } from './interfaces/event/event.interface';
 
 
 export interface IAppState {
@@ -16,6 +27,7 @@ export interface IAppState {
         error: string;
     };
     signUpAttempt:boolean;
+    events: IEvent[];
 }
 
 export const INITIAL_STATE: IAppState = {
@@ -30,7 +42,8 @@ export const INITIAL_STATE: IAppState = {
         success:null,
         error:null
     },
-    signUpAttempt:false
+    signUpAttempt:false,
+    events:[]
 }
 
 export function rootReducer(state: IAppState, action): IAppState {
@@ -42,6 +55,7 @@ export function rootReducer(state: IAppState, action): IAppState {
         case CHANGED_PAGE: return changedPage(state, action);
         case SIGNED_OUT: return signedOut(state, action);
         case CHECK_USER_SESSION: return checkUserSession(state, action);
+        case FETCH_EVENTS: return fetchEvents(state, action);
     }
     return state;
 }
@@ -52,7 +66,8 @@ const fetchUserList = (state, action) => {
         usersList: action.usersList,
         page: state.page,
         signedUp: state.signedUp,
-        signUpAttempt: state.signUpAttempt
+        signUpAttempt: state.signUpAttempt,
+        events:state.events
     });
 }
 
@@ -63,7 +78,8 @@ const signUpAttempt = (state, action) => {
         page: state.page,
         signedIn: state.signedIn,
         signedUp: state.signedUp,
-        signUpAttempt: action.signUpAttempt
+        signUpAttempt: action.signUpAttempt,
+        events:state.events
     });
 }
 
@@ -74,7 +90,8 @@ const signedUp = (state, action) => {
         page: state.page,
         signedIn: state.signedIn,
         signedUp: action.signedUp,
-        signUpAttempt: action.signUpAttempt
+        signUpAttempt: action.signUpAttempt,
+        events:state.events
     });
 }
 
@@ -85,7 +102,8 @@ const signedIn = (state, action) => {
         page: state.page,
         signedIn: action.signedIn,
         signedUp: action.signedUp,
-        signUpAttempt: action.signUpAttempt
+        signUpAttempt: action.signUpAttempt,
+        events:state.events
     });
 }
 
@@ -96,7 +114,8 @@ const signedOut = (state, action) => {
         page: state.page,
         signedIn: state.signedIn,
         signedUp: state.signedUp,
-        signUpAttempt: state.signUpAttempt
+        signUpAttempt: state.signUpAttempt,
+        events:state.events
     });
 }
 
@@ -107,7 +126,8 @@ const checkUserSession  = (state, action) => {
         page: state.page,
         signedIn: state.signedIn,
         signedUp: state.signedUp,
-        signUpAttempt: state.signUpAttempt
+        signUpAttempt: state.signUpAttempt,
+        events:state.events
     });
 }
 
@@ -118,6 +138,19 @@ const changedPage = (state, action) => {
         page: action.page,
         signedIn: state.signedIn,
         signedUp: state.signedUp,
-        signUpAttempt: state.signUpAttempt
+        signUpAttempt: state.signUpAttempt,
+        events:state.events
     });
 }
+
+const fetchEvents = (state, action) => {
+    return tassign(state, {
+        userSession: state.userSession,
+        usersList: state.usersList,
+        page: state.page,
+        signedIn: state.signedIn,
+        signedUp: state.signedUp,
+        signUpAttempt: state.signUpAttempt,
+        events: action.events
+    });
+} 

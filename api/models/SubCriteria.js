@@ -27,10 +27,6 @@ module.exports = {
       required:true,
       defaultsTo:'judge'
     },
-    schedule:{
-      type:'datetime',
-      required:true
-    },
     subCriteriaRepresentative:{
       collection:'subCriteriaRepresentative',
       via:'subCriteria'

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { UserService } from './user.service';
 import { SessionService } from './session.service';
+import { EventService } from './event.service';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ export class ServiceModule {
             ngModule : ServiceModule,
             providers: [
               UserService,
-              SessionService
+              SessionService,
+              EventService
             ]
         }
     }

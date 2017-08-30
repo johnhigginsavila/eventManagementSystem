@@ -39,7 +39,19 @@ module.exports.routes = {
   '/user/create': {
     controller: 'UserController',
     action: 'create'
-  } 
+  },
+  '/event':{
+    controller: 'EventController',
+    action: 'find'
+  },
+  '/event/create':{
+    controller: 'EventController',
+    action: 'create'
+  },
+  'event/delete/:id':{
+    controller: 'EventController',
+    action: 'delete'
+  }
 
   /***************************************************************************
   *                                                                          *

@@ -203,8 +203,6 @@ export class AdminViewComponent  implements OnInit {
     this.newEventForm = this.formBuilder.group({
       eventName: new FormControl ('', Validators.required)
     });
- 
 
   }
-
 }

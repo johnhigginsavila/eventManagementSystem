@@ -16,9 +16,13 @@ module.exports = {
       type:'string',
       required:true
     },
-    schedule:{
+    startDate:{
       type:'datetime',
       required:true
+    },
+    endDate:{
+      type:'datetime',
+      required: true
     },
     description:{
       type:'string'

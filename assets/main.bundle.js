@@ -17,13 +17,14 @@ webpackEmptyContext.id = "../../../../../src async recursive";
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return SIGN_UP_ATTEMPT; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return SIGNED_UP; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return SIGNED_IN; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return SIGNED_OUT; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return FETCH_USER_LIST; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return SIGN_UP_ATTEMPT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return SIGNED_UP; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return SIGNED_IN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return SIGNED_OUT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return FETCH_USER_LIST; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CHECK_USER_SESSION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return CHANGED_PAGE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return FETCH_EVENTS; });
 var SIGN_UP_ATTEMPT = 'SIGN_UP_ATTEMPT';
 var SIGNED_UP = 'SIGNED_UP';
 var SIGNED_IN = 'SIGNED_IN';
@@ -31,6 +32,7 @@ var SIGNED_OUT = 'SIGNED_OUT';
 var FETCH_USER_LIST = 'FETCH_USER_LIST';
 var CHECK_USER_SESSION = 'CHECK_USER_SESSION';
 var CHANGED_PAGE = 'CHANGED_PAGE';
+var FETCH_EVENTS = 'FETCH_EVENTS';
 //# sourceMappingURL=actions.js.map
 
 /***/ }),
@@ -99,7 +101,7 @@ var AppComponent = (function () {
         this.userService.GetAllUser()
             .subscribe(function (users) {
             var userSession = _this.sessionService.CheckUserSession();
-            _this.ngRedux.dispatch({ type: __WEBPACK_IMPORTED_MODULE_4__actions__["g" /* FETCH_USER_LIST */], usersList: users, userSession: userSession });
+            _this.ngRedux.dispatch({ type: __WEBPACK_IMPORTED_MODULE_4__actions__["h" /* FETCH_USER_LIST */], usersList: users, userSession: userSession });
         }, function (error) { return console.log(error); });
     };
     __decorate([
@@ -285,7 +287,7 @@ var MenuComponent = (function () {
     };
     MenuComponent.prototype.onSignOut = function () {
         this.sessionService.SessionDestroy();
-        this.ngRedux.dispatch({ type: __WEBPACK_IMPORTED_MODULE_4__actions__["f" /* SIGNED_OUT */] });
+        this.ngRedux.dispatch({ type: __WEBPACK_IMPORTED_MODULE_4__actions__["g" /* SIGNED_OUT */] });
     };
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_ng2_redux__["select"])(),
@@ -385,9 +387,9 @@ var SigninComponent = (function () {
         this.sessionService.CreateUserSession(this.sessionNewForm.value)
             .subscribe(function (userData) {
             _this.sessionService.SaveUserSession(userData);
-            _this.ngRedux.dispatch({ type: __WEBPACK_IMPORTED_MODULE_5__actions__["c" /* SIGNED_IN */], user: userData, signedIn: { success: 'Sign in success!', error: null } });
+            _this.ngRedux.dispatch({ type: __WEBPACK_IMPORTED_MODULE_5__actions__["d" /* SIGNED_IN */], user: userData, signedIn: { success: 'Sign in success!', error: null } });
         }, function (error) {
-            _this.ngRedux.dispatch({ type: __WEBPACK_IMPORTED_MODULE_5__actions__["c" /* SIGNED_IN */], user: null, signedIn: { success: null, error: JSON.stringify(error._body) } });
+            _this.ngRedux.dispatch({ type: __WEBPACK_IMPORTED_MODULE_5__actions__["d" /* SIGNED_IN */], user: null, signedIn: { success: null, error: JSON.stringify(error._body) } });
         });
     };
     SigninComponent.prototype.onCancel = function () {
@@ -493,14 +495,14 @@ var SignupComponent = (function () {
         var _this = this;
         this.userService.CreateUser(this.userNewForm.value)
             .subscribe(function (newUser) {
-            _this.ngRedux.dispatch({ type: __WEBPACK_IMPORTED_MODULE_5__actions__["d" /* SIGNED_UP */], signUpAttempt: false, user: newUser, signedUp: { success: 'Sign Up Success!', error: undefined } });
+            _this.ngRedux.dispatch({ type: __WEBPACK_IMPORTED_MODULE_5__actions__["e" /* SIGNED_UP */], signUpAttempt: false, user: newUser, signedUp: { success: 'Sign Up Success!', error: undefined } });
             _this.sessionService.SaveUserSession(newUser);
         }, function (error) {
-            _this.ngRedux.dispatch({ type: __WEBPACK_IMPORTED_MODULE_5__actions__["e" /* SIGN_UP_ATTEMPT */], signedUp: { success: undefined, error: JSON.stringify(error._body) } });
+            _this.ngRedux.dispatch({ type: __WEBPACK_IMPORTED_MODULE_5__actions__["f" /* SIGN_UP_ATTEMPT */], signedUp: { success: undefined, error: JSON.stringify(error._body) } });
         });
     };
     SignupComponent.prototype.onCancel = function () {
-        this.ngRedux.dispatch({ type: __WEBPACK_IMPORTED_MODULE_5__actions__["e" /* SIGN_UP_ATTEMPT */], signUpAttempt: false });
+        this.ngRedux.dispatch({ type: __WEBPACK_IMPORTED_MODULE_5__actions__["f" /* SIGN_UP_ATTEMPT */], signUpAttempt: false });
     };
     SignupComponent.prototype.ngOnDestroy = function () {
         //this.ngRedux.dispatch({type: SIGN_UP_ATTEMPT, signUpAttempt:false});
@@ -1022,6 +1024,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng2_redux__ = __webpack_require__("../../../../ng2-redux/lib/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng2_redux___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_ng2_redux__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__actions__ = __webpack_require__("../../../../../src/app/actions.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_event_service__ = __webpack_require__("../../../../../src/app/services/event.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventManagementComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1035,28 +1038,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var EventManagementComponent = (function () {
-    function EventManagementComponent(ngRedux) {
+    function EventManagementComponent(ngRedux, eventService) {
         this.ngRedux = ngRedux;
+        this.eventService = eventService;
         this.ngRedux.dispatch({ type: __WEBPACK_IMPORTED_MODULE_2__actions__["a" /* CHECK_USER_SESSION */] });
     }
     EventManagementComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.ngRedux.dispatch({ type: __WEBPACK_IMPORTED_MODULE_2__actions__["b" /* CHANGED_PAGE */], page: 'event-management' });
+        this.eventService.GetEvents()
+            .subscribe(function (events) {
+            _this.ngRedux.dispatch({ type: __WEBPACK_IMPORTED_MODULE_2__actions__["c" /* FETCH_EVENTS */], events: events });
+        }, function (error) { return console.log(error); });
     };
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ng2_redux__["select"])(),
         __metadata("design:type", Object)
     ], EventManagementComponent.prototype, "userSession", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ng2_redux__["select"])(),
+        __metadata("design:type", Object)
+    ], EventManagementComponent.prototype, "events", void 0);
     EventManagementComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-event-management',
             template: __webpack_require__("../../../../../src/app/feature-modules/event-management-module/event-management.component.html"),
             styles: [__webpack_require__("../../../../../src/app/feature-modules/event-management-module/event-management.component.scss")]
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ng2_redux__["NgRedux"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ng2_redux__["NgRedux"]) === "function" && _a || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ng2_redux__["NgRedux"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ng2_redux__["NgRedux"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_event_service__["a" /* EventService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_event_service__["a" /* EventService */]) === "function" && _b || Object])
     ], EventManagementComponent);
     return EventManagementComponent;
-    var _a;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=event-management.component.js.map
@@ -1174,7 +1188,7 @@ var HomeComponent = (function () {
         this.ngRedux.dispatch({ type: __WEBPACK_IMPORTED_MODULE_2__actions__["b" /* CHANGED_PAGE */], page: 'home' });
     };
     HomeComponent.prototype.onSignUp = function () {
-        this.ngRedux.dispatch({ type: __WEBPACK_IMPORTED_MODULE_2__actions__["e" /* SIGN_UP_ATTEMPT */], signUpAttempt: true });
+        this.ngRedux.dispatch({ type: __WEBPACK_IMPORTED_MODULE_2__actions__["f" /* SIGN_UP_ATTEMPT */], signUpAttempt: true });
     };
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ng2_redux__["select"])(),
@@ -1366,6 +1380,48 @@ var routerConfig = [
 
 /***/ }),
 
+/***/ "../../../../../src/app/services/event.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var EventService = (function () {
+    function EventService(http) {
+        this.http = http;
+        this.allEventsUrl = 'event';
+    }
+    EventService.prototype.GetEvents = function () {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]();
+        headers.append('ContentType', 'application/json');
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: headers });
+        return this.http.get(this.allEventsUrl, options)
+            .map(function (response) { return response.json(); });
+    };
+    EventService = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === "function" && _a || Object])
+    ], EventService);
+    return EventService;
+    var _a;
+}());
+
+//# sourceMappingURL=event.service.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/services/service.module.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1374,6 +1430,7 @@ var routerConfig = [
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user_service__ = __webpack_require__("../../../../../src/app/services/user.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__session_service__ = __webpack_require__("../../../../../src/app/services/session.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__event_service__ = __webpack_require__("../../../../../src/app/services/event.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ServiceModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1381,6 +1438,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -1394,7 +1452,8 @@ var ServiceModule = (function () {
             ngModule: ServiceModule_1,
             providers: [
                 __WEBPACK_IMPORTED_MODULE_2__user_service__["a" /* UserService */],
-                __WEBPACK_IMPORTED_MODULE_3__session_service__["a" /* SessionService */]
+                __WEBPACK_IMPORTED_MODULE_3__session_service__["a" /* SessionService */],
+                __WEBPACK_IMPORTED_MODULE_4__event_service__["a" /* EventService */]
             ]
         };
     };
@@ -1799,17 +1858,19 @@ var INITIAL_STATE = {
         success: null,
         error: null
     },
-    signUpAttempt: false
+    signUpAttempt: false,
+    events: []
 };
 function rootReducer(state, action) {
     switch (action.type) {
-        case __WEBPACK_IMPORTED_MODULE_1__actions__["g" /* FETCH_USER_LIST */]: return fetchUserList(state, action);
-        case __WEBPACK_IMPORTED_MODULE_1__actions__["e" /* SIGN_UP_ATTEMPT */]: return signUpAttempt(state, action);
-        case __WEBPACK_IMPORTED_MODULE_1__actions__["d" /* SIGNED_UP */]: return signedUp(state, action);
-        case __WEBPACK_IMPORTED_MODULE_1__actions__["c" /* SIGNED_IN */]: return signedIn(state, action);
+        case __WEBPACK_IMPORTED_MODULE_1__actions__["h" /* FETCH_USER_LIST */]: return fetchUserList(state, action);
+        case __WEBPACK_IMPORTED_MODULE_1__actions__["f" /* SIGN_UP_ATTEMPT */]: return signUpAttempt(state, action);
+        case __WEBPACK_IMPORTED_MODULE_1__actions__["e" /* SIGNED_UP */]: return signedUp(state, action);
+        case __WEBPACK_IMPORTED_MODULE_1__actions__["d" /* SIGNED_IN */]: return signedIn(state, action);
         case __WEBPACK_IMPORTED_MODULE_1__actions__["b" /* CHANGED_PAGE */]: return changedPage(state, action);
-        case __WEBPACK_IMPORTED_MODULE_1__actions__["f" /* SIGNED_OUT */]: return signedOut(state, action);
+        case __WEBPACK_IMPORTED_MODULE_1__actions__["g" /* SIGNED_OUT */]: return signedOut(state, action);
         case __WEBPACK_IMPORTED_MODULE_1__actions__["a" /* CHECK_USER_SESSION */]: return checkUserSession(state, action);
+        case __WEBPACK_IMPORTED_MODULE_1__actions__["c" /* FETCH_EVENTS */]: return fetchEvents(state, action);
     }
     return state;
 }
@@ -1819,7 +1880,8 @@ var fetchUserList = function (state, action) {
         usersList: action.usersList,
         page: state.page,
         signedUp: state.signedUp,
-        signUpAttempt: state.signUpAttempt
+        signUpAttempt: state.signUpAttempt,
+        events: state.events
     });
 };
 var signUpAttempt = function (state, action) {
@@ -1829,7 +1891,8 @@ var signUpAttempt = function (state, action) {
         page: state.page,
         signedIn: state.signedIn,
         signedUp: state.signedUp,
-        signUpAttempt: action.signUpAttempt
+        signUpAttempt: action.signUpAttempt,
+        events: state.events
     });
 };
 var signedUp = function (state, action) {
@@ -1839,7 +1902,8 @@ var signedUp = function (state, action) {
         page: state.page,
         signedIn: state.signedIn,
         signedUp: action.signedUp,
-        signUpAttempt: action.signUpAttempt
+        signUpAttempt: action.signUpAttempt,
+        events: state.events
     });
 };
 var signedIn = function (state, action) {
@@ -1849,7 +1913,8 @@ var signedIn = function (state, action) {
         page: state.page,
         signedIn: action.signedIn,
         signedUp: action.signedUp,
-        signUpAttempt: action.signUpAttempt
+        signUpAttempt: action.signUpAttempt,
+        events: state.events
     });
 };
 var signedOut = function (state, action) {
@@ -1859,7 +1924,8 @@ var signedOut = function (state, action) {
         page: state.page,
         signedIn: state.signedIn,
         signedUp: state.signedUp,
-        signUpAttempt: state.signUpAttempt
+        signUpAttempt: state.signUpAttempt,
+        events: state.events
     });
 };
 var checkUserSession = function (state, action) {
@@ -1869,7 +1935,8 @@ var checkUserSession = function (state, action) {
         page: state.page,
         signedIn: state.signedIn,
         signedUp: state.signedUp,
-        signUpAttempt: state.signUpAttempt
+        signUpAttempt: state.signUpAttempt,
+        events: state.events
     });
 };
 var changedPage = function (state, action) {
@@ -1879,7 +1946,19 @@ var changedPage = function (state, action) {
         page: action.page,
         signedIn: state.signedIn,
         signedUp: state.signedUp,
-        signUpAttempt: state.signUpAttempt
+        signUpAttempt: state.signUpAttempt,
+        events: state.events
+    });
+};
+var fetchEvents = function (state, action) {
+    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_tassign__["tassign"])(state, {
+        userSession: state.userSession,
+        usersList: state.usersList,
+        page: state.page,
+        signedIn: state.signedIn,
+        signedUp: state.signedUp,
+        signUpAttempt: state.signUpAttempt,
+        events: action.events
     });
 };
 //# sourceMappingURL=store.js.map
